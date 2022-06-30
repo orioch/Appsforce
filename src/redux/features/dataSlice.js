@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { generateId } from "./../../utils/general";
 
 const url = "https://randomuser.me/api/?results=10";
 const initialState = {
@@ -22,11 +23,22 @@ const dataSlice = createSlice({
         (user) => user.login.uuid !== action.payload.login.uuid
       );
     },
+    //if payload.uuid is null - create a new user instead of change user
     changeUser: (state, action) => {
       const index = state.users.findIndex(
         (user) => user.login.uuid === action.payload.uuid
       );
       state.users[index] = action.payload.newUser;
+    },
+    createNewUser: (state, action) => {
+      let newUser = { ...action.payload };
+      let newId = generateId();
+      newUser.login = { uuid: newId };
+      newUser.picture = {
+        large:
+          "https://st.depositphotos.com/2101611/3925/v/600/depositphotos_39258143-stock-illustration-businessman-avatar-profile-picture.jpg",
+      };
+      state.users.push(newUser);
     },
   },
   extraReducers: {
@@ -43,5 +55,5 @@ const dataSlice = createSlice({
     },
   },
 });
-export const { changeUser, removeUser } = dataSlice.actions;
+export const { changeUser, createNewUser, removeUser } = dataSlice.actions;
 export default dataSlice.reducer;

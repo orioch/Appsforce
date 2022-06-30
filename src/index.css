@@ -1,4 +1,6 @@
 body {
+  width: 100vw;
+
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -7,12 +9,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ecddff;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 .users-container {
+  width: 70vw;
+  margin: 50px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -21,4 +33,32 @@ code {
 
 .user-card {
   margin: 10px;
+}
+
+.header {
+  width: 100vw;
+  height: 5rem;
+  background-color: #8458b3;
+  color: white;
+  font-weight: bold;
+  font-size: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.add-user-btn {
+  padding: 0.5rem 2rem 0.5rem 2rem;
+  background: #e5eaf5;
+  border: none;
+  border-radius: 1rem;
+  color: #8458b3;
+  font-weight: bold;
+  font-size: 2rem;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.add-user-btn:hover {
+  background-color: white;
 }

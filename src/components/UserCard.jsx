@@ -26,7 +26,7 @@ function UserCard({
 }) {
   const dispatch = useDispatch();
   const openEditModal = (user) => {
-    dispatch(editModal.actions.openModal(user));
+    dispatch(editModal.actions.openModal({ showErrors: true, user: user }));
   };
   const openConfirmModal = (user) => {
     dispatch(confirmModal.actions.openModal(user));
