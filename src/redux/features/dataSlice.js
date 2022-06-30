@@ -16,7 +16,14 @@ export const getUsersData = createAsyncThunk("users/getUsersData", () => {
 const dataSlice = createSlice({
   name: "data",
   initialState,
-  reducers: {},
+  reducers: {
+    changeUser: (state, action) => {
+      const index = state.users.findIndex(
+        (user) => user.login.uuid === action.payload.uuid
+      );
+      state.users[index] = action.payload.newUser;
+    },
+  },
   extraReducers: {
     [getUsersData.pending]: (state) => {
       state.isLoading = true;
@@ -31,5 +38,5 @@ const dataSlice = createSlice({
     },
   },
 });
-
+export const { changeUser } = dataSlice.actions;
 export default dataSlice.reducer;
