@@ -22,7 +22,6 @@ const dataSlice = createSlice({
       state.isLoading = true;
     },
     [getUsersData.fulfilled]: (state, action) => {
-      console.log(action);
       state.isLoading = false;
       state.users = action.payload.results;
       state.info = action.payload.info;

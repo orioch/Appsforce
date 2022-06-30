@@ -3,6 +3,7 @@ import "./App.css";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getUsersData } from "./redux/features/dataSlice";
+import UsersContainer from "./components/UserContainer";
 
 function App() {
   const dispatch = useDispatch();
@@ -10,7 +11,11 @@ function App() {
     dispatch(getUsersData());
   }, []);
 
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <UsersContainer />
+    </div>
+  );
 }
 
 export default App;
