@@ -5,8 +5,8 @@ const initialState = {
   user: {},
 };
 
-const modalSlice = createSlice({
-  name: "modal",
+const editModalSlice = createSlice({
+  name: "editModal",
   initialState,
   reducers: {
     openModal: (state, action) => {
@@ -54,5 +54,4 @@ const modalSlice = createSlice({
   },
 });
 
-export const { openModal, closeModal, edit } = modalSlice.actions;
-export default modalSlice.reducer;
+export default editModalSlice;
