@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { openModal } from "../redux/features/modalSlice";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -7,6 +9,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 function UserCard({
+  userObject,
   cell,
   dob,
   email,
@@ -20,12 +23,16 @@ function UserCard({
   picture,
   registered,
 }) {
+  const dispatch = useDispatch();
+  const openEditModal = (user) => {
+    dispatch(openModal(user));
+  };
   return (
     <div className="user-card">
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 250 }}>
         <CardMedia
           component="img"
-          height="100"
+          height="300"
           image={picture.large}
           alt="green iguana"
         />
@@ -39,7 +46,9 @@ function UserCard({
         </CardContent>
         <CardActions>
           <Button size="small">Remove</Button>
-          <Button size="small">More Details</Button>
+          <Button onClick={() => openEditModal(userObject)} size="small">
+            Edit
+          </Button>
         </CardActions>
       </Card>
     </div>
