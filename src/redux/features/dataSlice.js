@@ -17,6 +17,11 @@ const dataSlice = createSlice({
   name: "data",
   initialState,
   reducers: {
+    removeUser: (state, action) => {
+      state.users = state.users.filter(
+        (user) => user.login.uuid !== action.payload.login.uuid
+      );
+    },
     changeUser: (state, action) => {
       const index = state.users.findIndex(
         (user) => user.login.uuid === action.payload.uuid
@@ -38,5 +43,5 @@ const dataSlice = createSlice({
     },
   },
 });
-export const { changeUser } = dataSlice.actions;
+export const { changeUser, removeUser } = dataSlice.actions;
 export default dataSlice.reducer;

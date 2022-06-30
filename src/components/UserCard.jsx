@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { openModal } from "../redux/features/modalSlice";
+import editModal from "../redux/features/editModalSlice";
+import confirmModal from "../redux/features/confirmModalSlice";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -25,7 +26,10 @@ function UserCard({
 }) {
   const dispatch = useDispatch();
   const openEditModal = (user) => {
-    dispatch(openModal(user));
+    dispatch(editModal.actions.openModal(user));
+  };
+  const openConfirmModal = (user) => {
+    dispatch(confirmModal.actions.openModal(user));
   };
   return (
     <div className="user-card">
@@ -45,7 +49,9 @@ function UserCard({
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Remove</Button>
+          <Button onClick={() => openConfirmModal(userObject)} size="small">
+            Remove
+          </Button>
           <Button onClick={() => openEditModal(userObject)} size="small">
             Edit
           </Button>

@@ -10,7 +10,7 @@ import {
   TextField,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModal, edit } from "../redux/features/modalSlice";
+import editModal from "../redux/features/editModalSlice";
 import { changeUser } from "../redux/features/dataSlice";
 import {
   emailExsist,
@@ -20,8 +20,10 @@ import {
   noErrors,
 } from "./../utils/validations";
 
+const { closeModal, edit } = editModal.actions;
+
 function EditModal() {
-  const { isOpen, user } = useSelector((store) => store.modal);
+  const { isOpen, user } = useSelector((store) => store.editModal);
   const { users } = useSelector((store) => store.data);
   const dispatch = useDispatch();
 

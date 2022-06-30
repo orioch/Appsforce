@@ -1,9 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import dataReducer from "./features/dataSlice";
-import modalReducer from "./features/modalSlice";
+import editModal from "./features/editModalSlice";
+import confirmModal from "./features/confirmModalSlice";
+
+const editModalReducer = editModal.reducer;
+const confirmModalReducer = confirmModal.reducer;
 export const store = configureStore({
   reducer: {
     data: dataReducer,
-    modal: modalReducer,
+    editModal: editModalReducer,
+    confirmModal: confirmModalReducer,
   },
 });
