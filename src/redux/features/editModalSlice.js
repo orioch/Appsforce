@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isOpen: false,
   user: {},
+  showErrors: true,
 };
 
 const editModalSlice = createSlice({
@@ -11,10 +12,14 @@ const editModalSlice = createSlice({
   reducers: {
     openModal: (state, action) => {
       state.isOpen = true;
-      state.user = action.payload;
+      state.user = action.payload.user;
+      state.showErrors = action.payload.showErrors;
     },
     closeModal: (state, action) => {
       state.isOpen = false;
+    },
+    setShowErrors: (state, action) => {
+      state.showErrors = action.payload;
     },
     edit: (state, action) => {
       const value = action.payload.value;

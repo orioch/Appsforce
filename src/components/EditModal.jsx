@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import editModal from "../redux/features/editModalSlice";
-import { changeUser } from "../redux/features/dataSlice";
+import { changeUser, createNewUser } from "../redux/features/dataSlice";
 import {
   emailExsist,
   isEmpty,
@@ -20,10 +20,10 @@ import {
   noErrors,
 } from "./../utils/validations";
 
-const { closeModal, edit } = editModal.actions;
+const { closeModal, setShowErrors, edit } = editModal.actions;
 
 function EditModal() {
-  const { isOpen, user } = useSelector((store) => store.editModal);
+  const { isOpen, user, showErrors } = useSelector((store) => store.editModal);
   const { users } = useSelector((store) => store.data);
   const dispatch = useDispatch();
 
@@ -48,8 +48,16 @@ function EditModal() {
   };
 
   const handleSubmit = () => {
+    dispatch(setShowErrors(true));
     if (noErrors(user, users)) {
-      dispatch(changeUser({ uuid: user.login.uuid, newUser: user }));
+      //if user have no id - create a new user
+      if (!user.login) {
+        dispatch(createNewUser(user));
+      }
+      //if user have an id - change the user in the users data
+      else {
+        dispatch(changeUser({ uuid: user.login.uuid, newUser: user }));
+      }
       handleClose();
     }
   };
@@ -104,9 +112,9 @@ function EditModal() {
           </TextField>
           <TextField
             sx={{ margin: "15px" }}
-            error={!validName(user.name.first)}
+            error={!validName(user.name.first) && showErrors}
             helperText={
-              !validName(user.name.first)
+              !validName(user.name.first) && showErrors
                 ? "must have minimum of 3 characters."
                 : ""
             }
@@ -119,9 +127,9 @@ function EditModal() {
           />
           <TextField
             sx={{ margin: "15px" }}
-            error={!validName(user.name.last)}
+            error={!validName(user.name.last) && showErrors}
             helperText={
-              !validName(user.name.last)
+              !validName(user.name.last) && showErrors
                 ? "must have minimum of 3 characters."
                 : ""
             }
@@ -135,14 +143,16 @@ function EditModal() {
         </Box>
 
         <TextField
+          sx={{ margin: "15px" }}
           error={
-            !validEmail(user.email) ||
-            emailExsist(user.email, user.login.uuid, users)
+            (!validEmail(user.email) || emailExsist(user, users)) && showErrors
           }
           helperText={
-            !validEmail(user.email)
+            !showErrors
+              ? ""
+              : !validEmail(user.email)
               ? "email is not valid."
-              : emailExsist(user.email, user.login.uuid, users)
+              : emailExsist(user, users)
               ? "email already exsist."
               : ""
           }
@@ -167,9 +177,11 @@ function EditModal() {
         >
           <TextField
             sx={{ margin: "15px" }}
-            error={isEmpty(user.location.country)}
+            error={isEmpty(user.location.country) && showErrors}
             helperText={
-              isEmpty(user.location.country) ? "field cannot be empty." : ""
+              isEmpty(user.location.country) && showErrors
+                ? "field cannot be empty."
+                : ""
             }
             id="country"
             defaultValue={user.location.country}
@@ -180,9 +192,11 @@ function EditModal() {
           />
           <TextField
             sx={{ margin: "15px" }}
-            error={isEmpty(user.location.state)}
+            error={isEmpty(user.location.state) && showErrors}
             helperText={
-              isEmpty(user.location.state) ? "field cannot be empty." : ""
+              isEmpty(user.location.state) && showErrors
+                ? "field cannot be empty."
+                : ""
             }
             id="state"
             defaultValue={user.location.state}
@@ -192,9 +206,11 @@ function EditModal() {
             onChange={handleChange}
           />
           <TextField
-            error={isEmpty(user.location.city)}
+            error={isEmpty(user.location.city) && showErrors}
             helperText={
-              isEmpty(user.location.city) ? "field cannot be empty." : ""
+              isEmpty(user.location.city) && showErrors
+                ? "field cannot be empty."
+                : ""
             }
             sx={{ margin: "15px" }}
             id="city"
@@ -205,9 +221,11 @@ function EditModal() {
             onChange={handleChange}
           />
           <TextField
-            error={isEmpty(user.location.street.name)}
+            error={isEmpty(user.location.street.name) && showErrors}
             helperText={
-              isEmpty(user.location.street.name) ? "field cannot be empty." : ""
+              isEmpty(user.location.street.name) && showErrors
+                ? "field cannot be empty."
+                : ""
             }
             sx={{ margin: "15px" }}
             id="street"
@@ -218,9 +236,9 @@ function EditModal() {
             onChange={handleChange}
           />
           <TextField
-            error={isEmpty(user.location.street.number)}
+            error={isEmpty(user.location.street.number) && showErrors}
             helperText={
-              isEmpty(user.location.street.number)
+              isEmpty(user.location.street.number) && showErrors
                 ? "field cannot be empty."
                 : ""
             }
