@@ -38,6 +38,7 @@ code {
 .header {
   width: 100vw;
   height: 9rem;
+  min-height: 7vw;
   background-color: #8458b3;
   color: white;
   font-weight: bold;
@@ -50,13 +51,13 @@ code {
 
 .add-user-btn {
   padding: 0.5rem 2rem 0.5rem 2rem;
-  background: #e5eaf5;
+  background-color: #e5eaf5;
   border: none;
   border-radius: 1rem;
   color: #8458b3;
   font-weight: bold;
   font-size: 3vw;
-  transition: 0.3s;
+  transition: background-color 0.3s;
   cursor: pointer;
 }
 .add-user-btn:hover {
@@ -64,6 +65,7 @@ code {
 }
 
 .logo {
+  color: #e5eaf5;
   font-size: 4vw;
 }
 

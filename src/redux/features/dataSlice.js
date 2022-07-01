@@ -47,6 +47,7 @@ const dataSlice = createSlice({
           "https://st.depositphotos.com/2101611/3925/v/600/depositphotos_39258143-stock-illustration-businessman-avatar-profile-picture.jpg",
       };
       state.users.push(newUser);
+      state.usersToRender.push(newUser);
     },
     setUsersToRender: (state, action) => {
       state.usersToRender = action.payload;
