@@ -9,21 +9,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-function UserCard({
-  userObject,
-  cell,
-  dob,
-  email,
-  gender,
-  id,
-  location,
-  login,
-  name,
-  nat,
-  phone,
-  picture,
-  registered,
-}) {
+function UserCard({ userObject, email, location, login, name, picture }) {
   const dispatch = useDispatch();
   const openEditModal = (user) => {
     dispatch(editModal.actions.openModal({ showErrors: true, user: user }));
@@ -33,7 +19,7 @@ function UserCard({
   };
   return (
     <div className="user-card">
-      <Card sx={{ maxWidth: 250 }}>
+      <Card sx={{ margin: "3vw", minWidth: "fitContent" }}>
         <CardMedia
           component="img"
           height="300"
@@ -44,8 +30,22 @@ function UserCard({
           <Typography gutterBottom variant="h5" component="div">
             {name.title + " " + name.first + " " + name.last}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {location.state}
+          <Typography gutterBottom variant="h6" component="div">
+            {email}
+          </Typography>
+          <Typography variant="body3" color="text.secondary">
+            {location.street.name +
+              ", " +
+              location.city +
+              ", " +
+              location.country}
+          </Typography>
+          <Typography
+            sx={{ marginTop: "1vw" }}
+            variant="body2"
+            color="text.secondary"
+          >
+            {login.uuid}
           </Typography>
         </CardContent>
         <CardActions>
