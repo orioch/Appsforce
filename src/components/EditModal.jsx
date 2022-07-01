@@ -78,8 +78,13 @@ function EditModal() {
   ];
   return (
     <Dialog fullWidth={true} maxWidth="lg" open={isOpen} onClose={handleClose}>
-      <DialogTitle>Editting (name)</DialogTitle>
-      <DialogContent sx={{ display: "flex", flexDirection: "column" }}>
+      <DialogContent
+        sx={{
+          backgroundColor: "#e5eaf5",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <Box
           component="form"
           sx={{
@@ -252,7 +257,7 @@ function EditModal() {
           />
         </Box>
       </DialogContent>
-      <DialogActions>
+      <DialogActions sx={{ backgroundColor: "#e5eaf5" }}>
         <Button onClick={handleClose}>Cancel</Button>
         <Button onClick={handleSubmit}>Submit</Button>
       </DialogActions>
