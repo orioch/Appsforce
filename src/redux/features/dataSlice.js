@@ -4,6 +4,7 @@ import { generateId } from "./../../utils/general";
 const url = "https://randomuser.me/api/?results=10";
 const initialState = {
   users: [],
+  usersToRender: [],
   info: {},
   isLoading: false,
 };
@@ -22,6 +23,9 @@ const dataSlice = createSlice({
       state.users = state.users.filter(
         (user) => user.login.uuid !== action.payload.login.uuid
       );
+      state.usersToRender = state.usersToRender.filter(
+        (user) => user.login.uuid !== action.payload.login.uuid
+      );
     },
     //if payload.uuid is null - create a new user instead of change user
     changeUser: (state, action) => {
@@ -29,6 +33,10 @@ const dataSlice = createSlice({
         (user) => user.login.uuid === action.payload.uuid
       );
       state.users[index] = action.payload.newUser;
+      const usersToRenderIndex = state.usersToRender.findIndex(
+        (user) => user.login.uuid === action.payload.uuid
+      );
+      state.usersToRender[usersToRenderIndex] = action.payload.newUser;
     },
     createNewUser: (state, action) => {
       let newUser = { ...action.payload };
@@ -40,6 +48,9 @@ const dataSlice = createSlice({
       };
       state.users.push(newUser);
     },
+    setUsersToRender: (state, action) => {
+      state.usersToRender = action.payload;
+    },
   },
   extraReducers: {
     [getUsersData.pending]: (state) => {
@@ -48,6 +59,7 @@ const dataSlice = createSlice({
     [getUsersData.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.users = action.payload.results;
+      state.usersToRender = action.payload.results;
       state.info = action.payload.info;
     },
     [getUsersData.pending]: (state) => {
@@ -55,5 +67,6 @@ const dataSlice = createSlice({
     },
   },
 });
-export const { changeUser, createNewUser, removeUser } = dataSlice.actions;
+export const { changeUser, createNewUser, removeUser, setUsersToRender } =
+  dataSlice.actions;
 export default dataSlice.reducer;

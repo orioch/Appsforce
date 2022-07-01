@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import editModal from "../redux/features/editModalSlice";
+import SearchBar from "./SearchBar.jsx";
 
 function Header() {
   const dispatch = useDispatch();
@@ -27,7 +28,8 @@ function Header() {
   };
   return (
     <div className="header">
-      <div>AppsForce</div>
+      <div className="logo">AppsForce</div>
+      <SearchBar />
       <button onClick={openEditModal} className="add-user-btn">
         Add User
       </button>

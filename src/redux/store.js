@@ -8,6 +8,7 @@ const confirmModalReducer = confirmModal.reducer;
 export const store = configureStore({
   reducer: {
     data: dataReducer,
+
     editModal: editModalReducer,
     confirmModal: confirmModalReducer,
   },

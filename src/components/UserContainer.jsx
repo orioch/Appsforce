@@ -4,11 +4,11 @@ import { useSelector } from "react-redux";
 
 function UsersContainer() {
   // get the users data from store.js
-  const { users } = useSelector((store) => store.data);
+  const { usersToRender } = useSelector((store) => store.data);
 
   return (
     <section className="users-container">
-      {users.map((user) => (
+      {usersToRender.map((user) => (
         <UserCard key={user.login.uuid} userObject={user} {...user} />
       ))}
     </section>
