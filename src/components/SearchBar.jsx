@@ -1,14 +1,6 @@
 import React, { useEffect } from "react";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import { useSelector, useDispatch } from "react-redux";
 import { setUsersToRender } from "../redux/features/dataSlice";
 
@@ -41,6 +33,7 @@ function SearchBar() {
           display: "flex",
           alignItems: "center",
           width: "40vw",
+          height: "calc(2rem + 1vw)",
         }}
       >
         <InputBase

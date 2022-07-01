@@ -176,7 +176,7 @@ function EditModal() {
             flexDirection: "row",
             justifyContent: "flex-start",
 
-            flexWrap: "nowrap",
+            flexWrap: "wrap",
           }}
           noValidate
         >
