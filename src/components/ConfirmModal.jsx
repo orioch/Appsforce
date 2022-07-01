@@ -35,16 +35,19 @@ function ConfirmModal() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
+        <DialogTitle
+          sx={{ backgroundColor: "#e5eaf5" }}
+          id="alert-dialog-title"
+        >
           Are you sure you want to remove{" "}
           {user.name.first + " " + user.name.last}?
         </DialogTitle>
-        <DialogContent>
+        <DialogContent sx={{ backgroundColor: "#e5eaf5" }}>
           <DialogContentText id="alert-dialog-description">
             Once deleted, you can't restore this user.
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
+        <DialogActions sx={{ backgroundColor: "#e5eaf5" }}>
           <Button onClick={handleClose}>cancel</Button>
           <Button onClick={handleRemove} autoFocus>
             i am sure
