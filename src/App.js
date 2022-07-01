@@ -18,6 +18,7 @@ function App() {
       <ConfirmModal />
       <EditModal />
       <UsersContainer />
+      <div className="footer" />
     </div>
   );
 }
