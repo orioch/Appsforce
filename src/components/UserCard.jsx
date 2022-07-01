@@ -19,7 +19,13 @@ function UserCard({ userObject, email, location, login, name, picture }) {
   };
   return (
     <div className="user-card">
-      <Card sx={{ margin: "3vw", minWidth: "fitContent" }}>
+      <Card
+        sx={{
+          backgroundColor: "#e5eaf5",
+          margin: "3vw",
+          minWidth: "fitContent",
+        }}
+      >
         <CardMedia
           component="img"
           height="300"
